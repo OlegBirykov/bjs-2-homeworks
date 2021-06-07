@@ -157,12 +157,12 @@ class StudentLog {
   }
 
   getAverageBySubject(subject) {
-    if (!this.grades[subject]) {
+    const grades = this.grades[subject];
+    if (!grades) {
       console.log('Несуществующий предмет');
       return null;
     }
     
-    const grades = this.grades[subject];
     return grades.reduce((sum, grade) => sum + grade, 0) / grades.length;
   }
 
