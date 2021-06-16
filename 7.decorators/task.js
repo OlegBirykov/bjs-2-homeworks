@@ -24,10 +24,35 @@ function cachingDecoratorNew(func) {
   }
 }
 
-function debounceDecoratorNew(func) {
-  // Ваш код
+function debounceDecoratorNew(func, time) {
+  let flag = false;
+  let timerId;
+
+  return (...args) => {
+    console.log(args);
+    console.log(flag);
+    if (!flag) {
+      func(...args);
+      flag = true;
+    }
+    clearTimeout(timerId);
+    timerId = setTimeout(() => flag = false, time);
+  }
 }
 
-function debounceDecorator2(func) {
-  // Ваш код
+function debounceDecorator2(func, time) {
+  let flag = false;
+  let timerId;
+  let count = 0;
+
+  return (...args) => {
+    if (!flag) {
+      func(...args);
+      count++;
+      console.log(count);
+      flag = true;
+    }
+    clearTimeout(timerId);
+    timerId = setTimeout(() => flag = false, time);
+  }
 }
