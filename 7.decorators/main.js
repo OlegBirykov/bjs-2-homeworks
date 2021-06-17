@@ -9,22 +9,23 @@ upgradedAddThree(5, 2, 3);
 upgradedAddThree(6, 2, 3); 
 upgradedAddThree(1, 2, 3); 
 
-const sendSignal = (time) => console.log(`Сигнал послан - время ${time} мс`); 
-const upgradedSendSignal = debounceDecoratorNew(sendSignal, 2000);
-setTimeout(upgradedSendSignal(0)); 
-setTimeout(upgradedSendSignal(300), 300); 
-setTimeout(upgradedSendSignal(900), 900); 
-setTimeout(upgradedSendSignal(1200), 1200);
-setTimeout(upgradedSendSignal(2300), 2300);
-setTimeout(upgradedSendSignal(4400), 4400);
-setTimeout(upgradedSendSignal(4500), 4500);
+const times = [0, 300, 900, 1200, 2300, 4400, 4500];
 
-const sendSignal2 = (time) => console.log(`Сигнал послан - время ${time} мс`); 
-const upgradedSendSignal2 = debounceDecorator2(sendSignal2,2000);
-setTimeout(upgradedSendSignal2(0)); 
-setTimeout(upgradedSendSignal2(300), 300); 
-setTimeout(upgradedSendSignal2(900), 900); 
-setTimeout(upgradedSendSignal2(1200), 1200);
-setTimeout(upgradedSendSignal2(2300), 2300);
-setTimeout(upgradedSendSignal2(4400), 4400);
-setTimeout(upgradedSendSignal2(4500), 4500);
+const sendSignal = (time) => console.log(`Задача 2: сигнал послан - время ${time} мс`); 
+const upgradedSendSignal = debounceDecoratorNew(sendSignal, 2000);
+
+times.forEach((item) => setTimeout(() => {
+  console.log(`Задача 2: время ${item} мс`);
+  upgradedSendSignal(item);
+}, item));
+
+times.push(5000, 7500, 8000);
+
+const sendSignal2 = (time) => console.log(`Задача 3: сигнал послан - время ${time} мс`); 
+const upgradedSendSignal2 = debounceDecorator2(sendSignal2, 2000);
+
+times.forEach((item) => setTimeout(() => {
+  console.log(`Задача 3: время ${item} мс`);
+  upgradedSendSignal2(item);
+  console.log(`Задача 3: количество вызовов функции - ${upgradedSendSignal2.count}`);
+}, item));

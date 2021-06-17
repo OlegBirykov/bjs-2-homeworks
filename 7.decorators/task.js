@@ -29,30 +29,33 @@ function debounceDecoratorNew(func, time) {
   let timerId;
 
   return (...args) => {
-    console.log(args);
-    console.log(flag);
+    clearTimeout(timerId);
+
     if (!flag) {
       func(...args);
       flag = true;
     }
-    clearTimeout(timerId);
-    timerId = setTimeout(() => flag = false, time);
+
+    timerId = setTimeout(() => flag = false, 2000);
   }
 }
 
 function debounceDecorator2(func, time) {
   let flag = false;
   let timerId;
-  let count = 0;
 
-  return (...args) => {
+  const wrapper = (...args) => {
+    clearTimeout(timerId);
+
     if (!flag) {
       func(...args);
-      count++;
-      console.log(count);
+      wrapper.count++;
       flag = true;
     }
-    clearTimeout(timerId);
+
     timerId = setTimeout(() => flag = false, time);
   }
+
+  wrapper.count = 0;
+  return wrapper;
 }
