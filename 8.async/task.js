@@ -56,13 +56,12 @@ class AlarmClock {
   }
 
   clearAlarms() {
-    this.stop;
+    this.stop(); // Здесь в прошлом году была опечатка - this.stop;
     this.alarmCollection = [];
   }
 }
 
-
-function testCase() {
+const testCase = (() => {
   const phoneAlarm = new AlarmClock;    
   
   phoneAlarm.addClock(phoneAlarm.getCurrentFormattedTime(), () => console.log('Скоро спать'), 1);
@@ -90,6 +89,4 @@ function testCase() {
   phoneAlarm.printAlarms();
   
   phoneAlarm.start();
-}
-
-testCase();
+})();
